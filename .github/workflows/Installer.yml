@@ -16,5 +16,4 @@ jobs:
           java-version: '17.0.6'
       - run: mvn compile
       - run: mvn package
-      - run: java -jar ./target/menu-server.jar
       
