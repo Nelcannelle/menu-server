@@ -1,0 +1,20 @@
+name: Install
+on:
+  - push
+jobs:
+  installer:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3 # Récupère le contenu du dépôt correspondant au commit du workflow en cours
+      - name: Set up Maven #expliciter d'avoir 3.9.0
+        uses: stCarolas/setup-maven@v4.5
+        with:
+          maven-version: 3.9.0
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu' 
+          java-version: '17.0.6'
+      - run: mvn compile
+      - run: mvn package
+      - run: java -jar ./
+      
