@@ -22,9 +22,7 @@ import com.cicdlectures.menuserver.repository.MenuRepository;
 public class MenuController {
 
   private final CreateMenuService createMenuService;
-
   private final ListMenuService listMenuService;
-
   private final MenuRepository menuRepository;
 
   @Autowired
