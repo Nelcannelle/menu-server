@@ -4,10 +4,13 @@ on:
 jobs:
   dire_bonjour:
     runs-on: ubuntu-22.04
-    container:
-      image: ghcr.io/cicd-lectures/gitpod:latest
-      options: --user=root
     steps:
       - uses: actions/checkout@v3 # Récupère le contenu du dépôt correspondant au commit du workflow en cours
-      - run: ls -l # Liste les fichier du répertoire courant
-      - run: cat README.md | cowsay # Affiche le contenu du fichier `README.md` à la base du dépôt
+      - id: file
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: README.md
+      - uses: Code-Hex/neo-cowsay-action@v1
+        with:
+          cow: 'random' # If specified, it shows random ascii art.
+          message: "${{ steps.file.outputs.content }}"
