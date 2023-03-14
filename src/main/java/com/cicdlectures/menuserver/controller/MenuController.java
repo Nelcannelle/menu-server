@@ -23,9 +23,10 @@ public class MenuController {
 
 
   @Autowired
-  MenuController(CreateMenuService createMenuService, ListMenuService listMenuService) {
+  MenuController(CreateMenuService createMenuService, ListMenuService listMenuService, MenuRepository menuRepository) {
     this.createMenuService = createMenuService;
     this.listMenuService = listMenuService;
+    this.menuRepository = menuRepository;
   }
 
   @GetMapping(path = "/menus", produces = "application/json")
@@ -37,5 +38,10 @@ public class MenuController {
   @ResponseStatus(HttpStatus.CREATED)
   public MenuDto createMenu(@RequestBody MenuDto menu) {
     return createMenuService.createMenu(menu);
+  }
+
+  @DeleteMapping("/menus/{id}")
+  public void deleteMenu(@PathVariable Long id) {
+    menuRepository.deleteById(id);
   }
 }
