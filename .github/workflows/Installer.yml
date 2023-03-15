@@ -15,6 +15,6 @@ jobs:
         with:
           distribution: 'zulu' 
           java-version: '17.0.6'
-      - run: mvn compile
-      - run: mvn package
+      - run: mvn test #fait validate et compile
+      - run: mvn verify #fait test + package
       
