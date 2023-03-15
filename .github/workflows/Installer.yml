@@ -17,4 +17,6 @@ jobs:
           java-version: '17.0.6'
       - run: mvn test #fait validate et compile
       - run: mvn verify #fait test + package
-      
+
+      - if: contains(github.ref, 'refs/tags/v')
+        run : gh release create --generate-notes target/menu-server.jar
